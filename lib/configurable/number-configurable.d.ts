@@ -4,6 +4,9 @@ export default class NumberConfigurable extends ReadWriteConfigurable<number> {
     readonly opts: {
         readonly read: (configurable: Configurable) => number;
         readonly write: (value: number, configurable: Configurable) => void;
+        readonly min?: number;
+        readonly max?: number;
+        readonly step?: number;
     };
     min: number;
     max: number;
@@ -11,5 +14,8 @@ export default class NumberConfigurable extends ReadWriteConfigurable<number> {
     constructor(opts: {
         readonly read: (configurable: Configurable) => number;
         readonly write: (value: number, configurable: Configurable) => void;
+        readonly min?: number;
+        readonly max?: number;
+        readonly step?: number;
     });
 }

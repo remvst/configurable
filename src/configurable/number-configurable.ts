@@ -10,7 +10,13 @@ export default class NumberConfigurable extends ReadWriteConfigurable<number> {
     constructor(readonly opts: {
         readonly read: (configurable: Configurable) => number,
         readonly write: (value: number, configurable: Configurable) => void,
+        readonly min?: number,
+        readonly max?: number,
+        readonly step?: number,
     }) {
         super(opts);
+        this.min = opts.min || 0;
+        this.max = opts.max || 100;
+        this.step = opts.step || 1;
     }
 }

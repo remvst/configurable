@@ -13,7 +13,8 @@ export default class CompositeConfigurable extends Configurable {
         this.entries.push({
             key,
             configurable,
-        })
+        });
+        configurable.onInvalidate = () => this.invalidate();
         return this;
     }
 }
