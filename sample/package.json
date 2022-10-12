@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "restart": "cd .. && npm i && npm run build && cd configurable-react && npm run build && cd ../sample && npm i && npm start",
+      "restart": "cd ../configurable-api && npm i && npm run build && cd ../configurable-react && npm i && npm run build && cd ../sample && npm i && npm start",
       "start": "webpack serve --open --config webpack.dev.js"
     },
     "author": "",
@@ -25,7 +25,7 @@
       "webpack-merge": "^5.8.0"
     },
     "dependencies": {
-      "@remvst/configurable": "file:..",
+      "@remvst/configurable": "file:../configurable-api",
       "@remvst/configurable-react": "file:../configurable-react",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",

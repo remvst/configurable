@@ -1,12 +1,12 @@
 {
   "name": "@remvst/configurable",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Configurable API",
   "main": "lib/index.js",
   "scripts": {
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=spec/support/jasmine.json",
     "coverage": "nyc -r lcov -e .ts -x \"spec/**/*.spec.ts\" npm run test",
-    "build": "tsc"
+    "build": "rm -rf lib && tsc"
   },
   "author": "",
   "license": "UNLICENSED",
