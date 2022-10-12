@@ -4,12 +4,13 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf lib && tsc"
+    "build": "rm -rf lib && tsc",
+    "prepublishOnly": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@remvst/configurable": "file:../configurable-api",
+    "@remvst/configurable": "1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@types/react-dom": "^18.0.6",
