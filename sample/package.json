@@ -1,9 +1,10 @@
 {
-    "name": "configurable-react-sample",
+    "name": "@remvst/configurable-react-sample",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
+      "prepare": "npm i",
       "restart": "cd ../configurable-api && npm i && npm run build && cd ../configurable-react && npm i && npm run build && cd ../sample && npm i && npm start",
       "start": "webpack serve --open --config webpack.dev.js"
     },

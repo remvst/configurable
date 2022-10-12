@@ -7,6 +7,7 @@
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=spec/support/jasmine.json",
     "coverage": "nyc -r lcov -e .ts -x \"spec/**/*.spec.ts\" npm run test",
     "build": "rm -rf lib && tsc",
+    "prepare": "npm i",
     "prepublishOnly": "npm run build"
   },
   "author": "",

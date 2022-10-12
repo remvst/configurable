@@ -1,10 +1,11 @@
 {
-  "name": "configurable-react",
+  "name": "@remvst/configurable-react",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && tsc",
+    "prepare": "npm i",
     "prepublishOnly": "npm run build"
   },
   "author": "",
