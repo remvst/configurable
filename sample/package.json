@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "restart": "cd ../configurable-react && npm run build && cd ../sample && npm i && npm start",
+      "restart": "cd .. && npm i && npm run build && cd configurable-react && npm run build && cd ../sample && npm i && npm start",
       "start": "webpack serve --open --config webpack.dev.js"
     },
     "author": "",
