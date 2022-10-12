@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "prepare": "npm i",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
