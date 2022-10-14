@@ -41,7 +41,7 @@ body, input, select {
     flex-basis: 100%;
 }
 
-.composite-configurable-row>input, .composite-configurable-row>label, .composite-configurable-row>select {
+.composite-configurable-row>input, .composite-configurable-row>label, .composite-configurable-row>select, .composite-configurable-row>.group-configurable {
     margin: 5px;
     flex-basis: 200px;
     flex-grow: 0;
@@ -70,10 +70,35 @@ input:focus, select:focus {
     color: #2fa1d6;
 }
 
-.label:focus-within {
+*:focus-within>label {
     color: #2fa1d6;
+}
+
+.composite-configurable-row>label {
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 input[type=button] {
     cursor: pointer;
+}
+
+.group-configurable {
+    display: flex;
+    flex-basis: 200px;
+    flex-grow: 0;
+    flex-wrap: wrap;
+}
+
+.group-configurable-item {
+    flex: 1 0 0;
+    min-width: 30%;
+}
+
+.group-configurable-item {
+    padding: 5px;
+}
+
+.group-configurable-item>* {
+    width: 100%;
 }

@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "prepare": "npm i",
+      "build": "rm -rf lib && tsc",
       "restart": "cd ../configurable-api && npm i && npm run build && cd ../configurable-react && npm i && npm run build && cd ../sample && npm i && npm start",
       "start": "webpack serve --open --config webpack.dev.js"
     },

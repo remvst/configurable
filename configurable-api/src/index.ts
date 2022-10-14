@@ -7,6 +7,7 @@ import EnumConfigurable, { EnumCategory } from "./configurable/enum-configurable
 import NumberConfigurable from "./configurable/number-configurable";
 import ReadWriteConfigurable from "./configurable/read-write-configurable";
 import StringConfigurable from "./configurable/string-configurable";
+import GroupConfigurable from "./configurable/group-configurable";
 
 export {
     Configurable,
@@ -19,4 +20,5 @@ export {
     CompositeConfigurable,
     ButtonConfigurable,
     ReadWriteConfigurable,
+    GroupConfigurable,
 }

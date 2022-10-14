@@ -1,5 +1,5 @@
-import { BooleanConfigurable, ButtonConfigurable, ColorConfigurable, CompositeConfigurable, Configurable, EnumConfigurable, NumberConfigurable, StringConfigurable } from '@remvst/configurable';
-import { configurableToComponents, defaultComponents, ConfigurableToComponent } from '@remvst/configurable-react';
+import { BooleanConfigurable, ButtonConfigurable, ColorConfigurable, CompositeConfigurable, GroupConfigurable, EnumConfigurable, NumberConfigurable, StringConfigurable } from '@remvst/configurable';
+import { configurableToComponents } from '@remvst/configurable-react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
@@ -49,6 +49,17 @@ const component = configurableToComponents(() => {
                 'read': () => 'Don Joe',
                 'write': () => {},
             }))
+        .add('ID', new GroupConfigurable()
+            .add(new StringConfigurable({
+                'read': () => 'Freeform',
+                'write': () => {},
+            }))
+            .add(new ButtonConfigurable({
+                'label': 'Select',
+                'onClick': () => alert('Congrats!'),
+            }))
+            .add(animals)
+        )
         .add('Submit', new ButtonConfigurable({
             'label': 'Submit',
             'onClick': () => alert('Congrats!'),
