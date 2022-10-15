@@ -3,11 +3,21 @@ import { configurableToComponents } from '@remvst/configurable-react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-const component = configurableToComponents(() => {
+const values = {
+    'name': 'John Doe',
+    'age': 12,
+    'animal': 'doggy',
+    'soul': true,
+    'color': 0xff00ff,
+    'children': 3,
+    'firstborn': 'Bobby',
+    'id': '',
+};
 
+const component = configurableToComponents(() => {
     const animals = new EnumConfigurable<string>({
-        'read': () => 'doggy',
-        'write': () => {},
+        'read': () => values.animal,
+        'write': (x) => values.animal = x,
     });
 
     animals.category('Furry')
@@ -21,38 +31,42 @@ const component = configurableToComponents(() => {
     return new CompositeConfigurable()
         .add('General info', new CompositeConfigurable()
             .add('Your age', new NumberConfigurable({
-                'read': () => 12,
-                'write': () => {},
+                'read': () => values.age,
+                'write': (x) => {
+                    console.log('write age');
+                    values.age = x
+                },
                 'step': 10,
             }))
             .add('Your name', new StringConfigurable({
-                'read': () => 'John Doe',
-                'write': () => {},
+                'read': () => values.name,
+                'write': (x) => values.name = x,
             })))
         .add('Sell your soul?', new BooleanConfigurable({
-            'read': () => true,
+            'read': () => values.soul,
             'write': (value, configurable) => {
+                values.soul = value;
                 configurable.invalidate();
             },
         }))
         .add('Your favorite color?', new ColorConfigurable({
-            'read': () => 0xffff00,
-            'write': () => {},
+            'read': () => values.color,
+            'write': (x) => values.color = x,
         }))
         .add('Best animal?', animals)
         .add('Less general info', new CompositeConfigurable()
             .add('How many children?', new NumberConfigurable({
-                'read': () => 12,
-                'write': () => {},
+                'read': () => values.children,
+                'write': (x) => values.children = x,
             }))
             .add('Your firstborn name', new StringConfigurable({
-                'read': () => 'Don Joe',
-                'write': () => {},
+                'read': () => values.firstborn,
+                'write': (x) => values.firstborn = x,
             }))
         .add('ID', new GroupConfigurable()
             .add(new StringConfigurable({
-                'read': () => 'Freeform',
-                'write': () => {},
+                'read': () => values.id,
+                'write': (x) => values.id = x,
             }))
             .add(new ButtonConfigurable({
                 'label': 'Select',

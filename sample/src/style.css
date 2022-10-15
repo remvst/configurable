@@ -79,6 +79,10 @@ input:focus, select:focus {
     flex-basis: 0;
 }
 
+label {
+    text-transform: capitalize;
+}
+
 input[type=button] {
     cursor: pointer;
 }
@@ -101,4 +105,8 @@ input[type=button] {
 
 .group-configurable-item>* {
     width: 100%;
+}
+
+input.dirty {
+    color: orange;
 }

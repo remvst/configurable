@@ -1,13 +1,19 @@
 import React from 'react';
 import { StringConfigurable } from '@remvst/configurable';
-import { ComponentProps } from './component-props';
+import InputComponent from './input-component';
 
-export default class StringConfigurableComponent extends React.Component<ComponentProps<StringConfigurable>> {
+export default class StringConfigurableComponent extends InputComponent<string, StringConfigurable> {
+    protected mapValueToConfigurableFormat(value: string): string {
+        return value;
+    }
+
+    protected mapValueToInputFormat(value: string): string {
+        return value;
+    }
+
     render() {
-        const { configurable } = this.props;
         return (<input 
-            type="text" 
-            defaultValue={configurable.read()}
-            onBlur={event => configurable.write(event.target.value)} />);
+            type="text"
+            {...this.inputProperties} />);
     }
 }

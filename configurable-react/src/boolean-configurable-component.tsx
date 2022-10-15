@@ -7,7 +7,7 @@ export default class BooleanConfigurableComponent extends React.Component<Compon
         const { configurable } = this.props;
         return (<input 
             type="checkbox" 
-            defaultChecked={configurable.read()}
+            checked={configurable.read()}
             onChange={(event) => configurable.write(event.target.checked)} />);
     }
 }

@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "",
   "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
   "scripts": {
     "build": "rm -rf lib && tsc",
     "prepublishOnly": "npm i && npm run build"
@@ -10,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@remvst/configurable": "1.2.0",
+    "@remvst/configurable": "../configurable-api",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@types/react-dom": "^18.0.6",

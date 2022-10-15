@@ -1,16 +1,27 @@
 import React from 'react';
 import { NumberConfigurable } from '@remvst/configurable';
-import { ComponentProps } from './component-props';
+import InputComponent from './input-component';
 
-export default class NumberConfigurableComponent extends React.Component<ComponentProps<NumberConfigurable>> {
+export default class NumberConfigurableComponent extends InputComponent<number, NumberConfigurable> {
+    protected mapValueToConfigurableFormat(value: string) {
+        const parsed = parseFloat(value);
+        if (isNaN(parsed)) {
+            throw new Error();
+        }
+        return parsed;
+    }
+
+    protected mapValueToInputFormat(value: number): string {
+        return value.toString();
+    }
+
     render() {
         const { configurable } = this.props;
         return (<input 
             type="number" 
-            defaultValue={configurable.read()} 
             step={configurable.step} 
             min={configurable.min} 
             max={configurable.max}
-            onBlur={event => configurable.write(parseFloat(event.target.value))} />);
+            {...this.inputProperties} />);
     }
 }
