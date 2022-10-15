@@ -25,7 +25,7 @@ const component = configurableToComponents(() => {
         .add('Cat', 'cates');
 
     animals.category('Non-Furry')
-        .add('Frog', 'froggies')
+        .add('Frog', 'froggy')
         .add('Worm', 'wormies')
 
     return new CompositeConfigurable()
@@ -43,10 +43,7 @@ const component = configurableToComponents(() => {
             })))
         .add('Sell your soul?', new BooleanConfigurable({
             'read': () => values.soul,
-            'write': (value, configurable) => {
-                values.soul = value;
-                configurable.invalidate();
-            },
+            'write': (value) => values.soul = value,
         }))
         .add('Your favorite color?', new ColorConfigurable({
             'read': () => values.color,
@@ -69,7 +66,10 @@ const component = configurableToComponents(() => {
             }))
             .add(new ButtonConfigurable({
                 'label': 'Select',
-                'onClick': () => alert('Congrats!'),
+                'onClick': (configurable) => {
+                    values.animal = 'froggy';
+                    configurable.invalidate();
+                },
             }))
             .add(animals)
         )
