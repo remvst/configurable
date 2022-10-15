@@ -1,4 +1,4 @@
-* {
+.configurable * {
     margin: 0;
     padding: 0;
     -ms-box-sizing: border-box;
@@ -8,25 +8,26 @@
     -webkit-appearance: none;
     appearance: none;
     outline: none;
+    min-width: 0;
 }
 
-body, input, select {
+.configurable, .configurable input, .configurable select {
     font-family: Lucida Grande, sans-serif;
     font-size: 12px;
     color: white;
 }
 
-.composite-configurable {
+.configurable .composite-configurable {
     width: 100%;
     background-color: black;
     flex-basis: 100%;
 }
 
-.composite-configurable-row>* {
+.configurable .composite-configurable-row>* {
     flex: 1 1 0px;
 }
 
-.composite-configurable-row {
+.configurable .composite-configurable-row {
     display: flex;
     flex-wrap: wrap;
     background-color: #222;
@@ -37,76 +38,143 @@ body, input, select {
     justify-content: space-between;
 }
 
-.composite-configurable-row>.composite-configurable {
+.configurable .composite-configurable-row>.composite-configurable {
     flex-basis: 100%;
+    max-width: 100%;
 }
 
-.composite-configurable-row>input, .composite-configurable-row>label, .composite-configurable-row>select, .composite-configurable-row>.group-configurable {
+.configurable .composite-configurable-row>input, 
+.configurable .composite-configurable-row>label, 
+.configurable .composite-configurable-row>select, 
+.configurable .composite-configurable-row>.group-configurable,
+.configurable .composite-configurable-row>div {
     margin: 5px;
     flex-basis: 200px;
+    max-width: 200px;
     flex-grow: 0;
 }
 
-input[type=checkbox] {
+.configurable input[type=checkbox] {
     flex-grow: 0;
     flex-basis: 20px;
     height: 20px;
 }
 
-input[type=checkbox] {
+.configurable input[type=checkbox] {
     -webkit-appearance: auto;
     appearance: auto;
 }
 
-input, select {
+.configurable input, .configurable select {
     border: none;
     background-color: #333;
     color: white;
     padding: 5px;
 }
 
-input:focus, select:focus {
+.configurable input:focus, .configurable select:focus {
     background-color: #444;
     color: #2fa1d6;
 }
 
-*:focus-within>label {
+.configurable *:focus-within>label {
     color: #2fa1d6;
 }
 
-.composite-configurable-row>label {
+.configurable .composite-configurable-row>label {
     flex-grow: 1;
     flex-basis: 0;
 }
 
-label {
+.configurable label {
     text-transform: capitalize;
 }
 
-input[type=button] {
+.configurable input[type=button] {
     cursor: pointer;
 }
 
-.group-configurable {
+.configurable .group-configurable {
     display: flex;
     flex-basis: 200px;
     flex-grow: 0;
     flex-wrap: wrap;
 }
 
-.group-configurable-item {
+.configurable .group-configurable-item {
     flex: 1 0 0;
     min-width: 30%;
 }
 
-.group-configurable-item {
+.configurable .group-configurable-item {
     padding: 5px;
 }
 
-.group-configurable-item>* {
+.configurable .group-configurable-item>* {
     width: 100%;
 }
 
-input.dirty {
+.configurable input.dirty {
     color: orange;
+}
+
+.configurable .number-configurable {
+    display: flex;
+    flex-direction: row;
+}
+
+.configurable .number-configurable>* {
+    flex: 1 0 0;
+}
+
+.configurable .number-configurable>*:nth-child(2) {
+    max-width: 30%;
+}
+
+.configurable input[type=range] {
+    background: transparent;
+    cursor: ew-resize;
+    appearance: none;
+}
+
+.configurable input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+.configurable input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+.configurable input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    box-shadow: 0px 2px #000;
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    margin-top: -7.5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    border-radius: 0px;
+}
+
+.configurable input[type=range]::-moz-range-thumb {
+    border: none;
+    box-shadow: 0px 2px #000;
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    border-radius: 0px;
+}
+
+.configurable input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    box-shadow: 0px 2px #000;
+}
+
+.configurable input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    box-shadow: 0px 2px #000;
 }

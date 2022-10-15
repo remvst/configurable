@@ -14,6 +14,6 @@ export default class StringConfigurableComponent extends InputComponent<string, 
     render() {
         return (<input 
             type="text"
-            {...this.inputProperties} />);
+            {...this.inputProperties()} />);
     }
 }

@@ -32,11 +32,10 @@ const component = configurableToComponents(() => {
         .add('General info', new CompositeConfigurable()
             .add('Your age', new NumberConfigurable({
                 'read': () => values.age,
-                'write': (x) => {
-                    console.log('write age');
-                    values.age = x
-                },
+                'write': (x) => values.age = x,
                 'step': 10,
+                'min': -100,
+                'max': 100,
             }))
             .add('Your name', new StringConfigurable({
                 'read': () => values.name,

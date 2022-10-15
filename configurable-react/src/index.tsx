@@ -36,7 +36,6 @@ export function defaultComponents(configurable: Configurable, mapper: Configurab
     if (configurable instanceof ButtonConfigurable) {
         return (<ButtonConfigurableComponent configurable={configurable} />);
     }
-    console.log(GroupConfigurable, configurable.constructor, GroupConfigurable === configurable.constructor)
     throw new Error(`Unrecognized component type ${configurable.constructor.name}`);
 }
 
@@ -44,7 +43,7 @@ export function configurableToComponents(
     configurable: () => Configurable,
     mapper: ConfigurableToComponent = defaultComponents,
 ) {
-    return <InvalidatableComponent configurable={configurable} mapper={mapper} />;
+    return <div className='configurable'><InvalidatableComponent configurable={configurable} mapper={mapper} /></div>;
 }
 
 export {

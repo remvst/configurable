@@ -21,11 +21,25 @@ export default abstract class InputComponent<
     protected abstract mapValueToConfigurableFormat(value: string): ConfigurableValueType;
     protected abstract mapValueToInputFormat(value: ConfigurableValueType): string;
 
-    protected onChange(event: React.ChangeEvent<HTMLInputElement>) {
-        this.setState({'value': event.target.value, 'dirty': true});
+    protected onChange(event: React.ChangeEvent<HTMLInputElement>, submit: boolean = false) {
+        this.setState({'value': event.target.value, 'dirty': true}, () =>{
+            if (submit) {
+                this.submit();
+            }
+        });
     }
 
     protected onBlur(event: React.FocusEvent<HTMLInputElement>) {
+        this.submit();
+    }
+
+    protected onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+        if (event.key === 'Enter') {
+            (event.target as HTMLInputElement).blur();
+        }
+    }
+
+    protected submit() {
         const { configurable } = this.props;
         const { value } = this.state;
         try {
@@ -38,17 +52,11 @@ export default abstract class InputComponent<
         this.setState({'value': this.mapValueToInputFormat(configurable.read()), 'dirty': false});
     }
 
-    protected onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-        if (event.key === 'Enter') {
-            (event.target as HTMLInputElement).blur();
-        }
-    }
-
-    protected get inputProperties(): React.InputHTMLAttributes<HTMLInputElement> {
+    protected inputProperties(fastSubmit: boolean = false): React.InputHTMLAttributes<HTMLInputElement> {
         return {
             'className': this.state.dirty ? 'dirty' : '',
             'value': this.state.value,
-            'onChange': (event) => this.onChange(event),
+            'onChange': (event) => this.onChange(event, fastSubmit),
             'onBlur': (event) => this.onBlur(event),
             'onKeyDown': (event) => this.onKeyDown(event),
         };

@@ -3,8 +3,8 @@ import ReadWriteConfigurable from "./read-write-configurable";
 
 export default class NumberConfigurable extends ReadWriteConfigurable<number> {
 
-    min = 0;
-    max = 100;
+    min: number | undefined;
+    max: number | undefined;
     step = 1;
 
     constructor(readonly opts: {
@@ -15,8 +15,8 @@ export default class NumberConfigurable extends ReadWriteConfigurable<number> {
         readonly step?: number,
     }) {
         super(opts);
-        this.min = opts.min || 0;
-        this.max = opts.max || 100;
+        this.min = opts.min;
+        this.max = opts.max;
         this.step = opts.step || 1;
     }
 }

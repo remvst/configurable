@@ -18,6 +18,6 @@ export default class ColorConfigurableComponent extends InputComponent<number, C
     render() {
         return (<input 
             type="color" 
-            {...this.inputProperties} />);
+            {...this.inputProperties()} />);
     }
 }

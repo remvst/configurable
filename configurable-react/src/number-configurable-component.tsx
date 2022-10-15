@@ -17,11 +17,26 @@ export default class NumberConfigurableComponent extends InputComponent<number, 
 
     render() {
         const { configurable } = this.props;
-        return (<input 
-            type="number" 
-            step={configurable.step} 
-            min={configurable.min} 
-            max={configurable.max}
-            {...this.inputProperties} />);
+
+        let slider;
+        if (configurable.min !== undefined && configurable.max !== undefined) {
+            slider = (<input 
+                type="range" 
+                min={configurable.min} 
+                max={configurable.max} 
+                step={configurable.step}
+                {...this.inputProperties(true)} />
+            );
+        }
+
+        return (<div className='number-configurable'>
+            {slider}
+            <input 
+                type="number" 
+                step={configurable.step} 
+                min={configurable.min} 
+                max={configurable.max}
+                {...this.inputProperties()} />
+        </div>);
     }
 }
