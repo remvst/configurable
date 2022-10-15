@@ -3,16 +3,20 @@ import { configurableToComponents } from '@remvst/configurable-react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-const values = {
-    'name': 'John Doe',
-    'age': 12,
-    'animal': 'doggy',
-    'soul': true,
-    'color': 0xff00ff,
-    'children': 3,
-    'firstborn': 'Bobby',
-    'id': '',
-};
+let values = generateValues();
+
+function generateValues() {
+    return {
+        'name': 'John Doe number ' + ~~(Math.random() * 100),
+        'age': 12 + ~~(Math.random() * 80),
+        'animal': 'doggy',
+        'soul': Math.random() < 0.5,
+        'color': ~~(Math.random() * 0xffffff),
+        'children': ~~(Math.random() * 10),
+        'firstborn': Math.random() < 0.5 ? 'Bobby' : 'Not Bobby',
+        'id': '',
+    };
+}
 
 const component = configurableToComponents(() => {
     const animals = new EnumConfigurable<string>({
@@ -66,17 +70,17 @@ const component = configurableToComponents(() => {
             }))
             .add(new ButtonConfigurable({
                 'label': 'Select',
-                'onClick': (configurable) => {
-                    values.animal = 'froggy';
-                    configurable.invalidate();
-                },
+                'onClick': () => {},
             }))
             .add(animals)
-        )
-        .add('Submit', new ButtonConfigurable({
-            'label': 'Submit',
-            'onClick': () => alert('Congrats!'),
-        })))
+        ))
+    .add('Regen', new ButtonConfigurable({
+        'label': 'Regenerate',
+        'onClick': (configurable) => {
+            values = generateValues();
+            configurable.invalidate();
+        },
+    }))
 });
 
 const root = createRoot(document.querySelector('div')!);

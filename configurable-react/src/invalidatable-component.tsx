@@ -11,6 +11,7 @@ interface Props {
 
 interface State {
     readonly configurable: Configurable;
+    readonly refreshCount: number;
 }
 
 export default class InvalidatableComponent extends React.Component<Props, State> {
@@ -19,12 +20,13 @@ export default class InvalidatableComponent extends React.Component<Props, State
         super(props);
         this.state = {
             'configurable': this.prepareConfigurable(),
+            'refreshCount': 0,
         };
     }
 
     private renew() {
         const configurable = this.prepareConfigurable();
-        this.setState({ configurable });
+        this.setState({ configurable, 'refreshCount': this.state.refreshCount + 1 });
     }
 
     private prepareConfigurable(): Configurable {
@@ -34,6 +36,6 @@ export default class InvalidatableComponent extends React.Component<Props, State
     }
 
     render(): React.ReactNode {
-        return (<div>{this.props.mapper(this.state.configurable, this.props.mapper)}</div>);
+        return (<div key={this.state.refreshCount}>{this.props.mapper(this.state.configurable, this.props.mapper)}</div>);
     }
 }
