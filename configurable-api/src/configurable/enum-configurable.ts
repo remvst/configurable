@@ -47,6 +47,19 @@ export default class EnumConfigurable<T> extends ReadWriteConfigurable<T> {
         return this;
     }
 
+    addItems(
+        items: Iterable<T>,
+        itemLabel: (item: T) => string,
+        category: (item: T) => string | null = () => null,
+    ): this {
+        for (const item of items) {
+            const categoryLabel = category(item);
+            const itemCategory = categoryLabel ? this.category(categoryLabel) : this.defaultCategory;
+            itemCategory.add(itemLabel(item), item);
+        }
+        return this;
+    }
+
     get categories() {
         return this.categoryMap.values();
     }

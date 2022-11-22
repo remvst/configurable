@@ -49,11 +49,16 @@ export default class EnumConfigurableComponent extends React.Component<Component
             }
         }
 
+        const categories = Array.from(configurable.categories)
+            .sort((a, b) => (a.label || '') < (b.label || '') ? -1 : 1)
+
         return (
             <select value={valueKey} onChange={(e) => this.onChange(e)}>
-                {Array.from(configurable.categories).map((category) => {
+                {categories.map((category) => {
+                    const items = category.items.sort((a, b) => a.key < b.key ? -1 : 1);
+
                     return (<optgroup label={category.label || ''} key={category.label}>
-                        {category.items.map((item) => {
+                        {items.map((item) => {
                             return (
                                 <option key={item.key} value={item.key}>{item.key}</option>
                             );
