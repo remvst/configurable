@@ -28,7 +28,10 @@ module.exports = {
         assetModuleFilename: '[name]-[hash][ext][query]',
     },
     resolve: {
-        extensions: ['*', '.js', '.ts', '.tsx']
+        extensions: ['*', '.js', '.ts', '.tsx'],
+        alias: {
+            react: path.resolve('./node_modules/react'),
+        },
     },
     module: {
         rules: [{

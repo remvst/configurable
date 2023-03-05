@@ -9,14 +9,21 @@ import EnumConfigurableComponent from './enum-configurable-component';
 import ButtonConfigurableComponent from './button-configurable-component';
 import GroupConfigurableComponent from './group-configurable-component';
 import InvalidatableComponent from './invalidatable-component';
+import TexturedEnumComponent, { TextureType } from './textured-enum-component';
 import { ConfigurableToComponent } from './mapping';
 
-export function defaultComponents(configurable: Configurable, mapper: ConfigurableToComponent): ReactElement {
+export function defaultComponents(opts: {
+    configurable: Configurable, 
+    mapper: ConfigurableToComponent,
+    getTexture?: (enumToken: any, item: any) => [string, TextureType] | null,
+}): ReactElement {
+    const { configurable, mapper } = opts;
+
     if (configurable instanceof CompositeConfigurable) {
-        return (<CompositeConfigurableComponent configurable={configurable} mapper={mapper} />);
+        return (<CompositeConfigurableComponent configurable={configurable} mapper={mapper} getTexture={opts.getTexture} />);
     }
     if (configurable instanceof GroupConfigurable) {
-        return (<GroupConfigurableComponent configurable={configurable} mapper={mapper} />);
+        return (<GroupConfigurableComponent configurable={configurable} mapper={mapper} getTexture={opts.getTexture} />);
     }
     if (configurable instanceof ColorConfigurable) {
         return (<ColorConfigurableComponent configurable={configurable} />);
@@ -31,6 +38,9 @@ export function defaultComponents(configurable: Configurable, mapper: Configurab
         return (<BooleanConfigurableComponent configurable={configurable} />);
     }
     if (configurable instanceof EnumConfigurable) {
+        if (configurable.enumToken) {
+            return (<TexturedEnumComponent configurable={configurable} getTexture={opts.getTexture} />);
+        }
         return (<EnumConfigurableComponent configurable={configurable} />);
     }
     if (configurable instanceof ButtonConfigurable) {
@@ -39,14 +49,20 @@ export function defaultComponents(configurable: Configurable, mapper: Configurab
     throw new Error(`Unrecognized component type ${configurable.constructor.name}`);
 }
 
-export function configurableToComponents(
+export function configurableToComponents(opts: {
     configurable: () => Configurable,
-    mapper: ConfigurableToComponent = defaultComponents,
-) {
-    return <div className='configurable'><InvalidatableComponent configurable={configurable} mapper={mapper} /></div>;
+    mapper: ConfigurableToComponent,
+    getTexture?: (enumToken: any, item: any) => [string, TextureType] | null,
+}) {
+    return (
+        <div className='configurable'>
+            <InvalidatableComponent {...opts} />
+        </div>
+    );
 }
 
 export {
     CompositeConfigurableComponent,
     ConfigurableToComponent,
+    TextureType,
 }

@@ -25,13 +25,17 @@ export default class EnumConfigurable<T> extends ReadWriteConfigurable<T> {
 
     readonly defaultCategory = new EnumCategory<T>(null);
     private readonly categoryMap: Map<string, EnumCategory<T>> = new Map();
+    readonly enumToken: any;
 
     constructor(opts: {
+        readonly enumToken?: any,
         readonly items?: {[key: string]: T},
         readonly read: (configurable: Configurable) => T,
         readonly write: (value: T, configurable: Configurable) => void,
     }) {
         super(opts);
+
+        this.enumToken = opts.enumToken || null;
 
         this.categoryMap.set('default', this.defaultCategory);
 

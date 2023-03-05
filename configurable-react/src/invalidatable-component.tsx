@@ -1,12 +1,12 @@
 import React from "react";
-import { ComponentProps } from "./component-props";
-
 import { Configurable } from '@remvst/configurable';
 import { ConfigurableToComponent } from "./mapping";
+import { TextureType } from "./textured-enum-component";
 
 interface Props {
     readonly configurable: () => Configurable;
     readonly mapper: ConfigurableToComponent;
+    readonly getTexture?: (enumToken: any, item: any) => ([string, TextureType] | null),
 }
 
 interface State {
@@ -36,6 +36,12 @@ export default class InvalidatableComponent extends React.Component<Props, State
     }
 
     render(): React.ReactNode {
-        return (<div key={this.state.refreshCount}>{this.props.mapper(this.state.configurable, this.props.mapper)}</div>);
+        return (<div key={this.state.refreshCount}>
+            {this.props.mapper({
+                'configurable': this.state.configurable, 
+                'mapper': this.props.mapper,
+                'getTexture': this.props.getTexture,
+            })}
+        </div>);
     }
 }
