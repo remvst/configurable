@@ -67,7 +67,6 @@ function TextureItemComponent(props: {
     const [size, setSize] = useState({'width': 0, 'height': 0});
 
     useEffect(() => {
-        console.log('load', props.src);
         if (size.width !== 0 || !props.src) { 
             return;
         }
