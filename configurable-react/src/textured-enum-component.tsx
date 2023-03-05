@@ -39,7 +39,6 @@ function CategoryComponent<T>(props: {
 }) {
     const items = props.category.items.map(item => {
         const texture = props.getTexture ? props.getTexture(props.enumToken, item.value) : null;
-        console.log(texture);
 
         return <TextureItemComponent
             key={item.key}
@@ -77,7 +76,7 @@ function TextureItemComponent(props: {
     });
 
     let backgroundSize: string = 'contain';
-    switch (props.enumToken) {
+    switch (props.textureType) {
     case TextureType.SINGLE: 
         backgroundSize = 'contain';
         break;
