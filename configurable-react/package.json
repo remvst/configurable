@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@remvst/configurable": "^1.5.0",
+    "@types/react": "^18.2.45",
     "react": "^18.2.0",
     "typescript": "^4.1.3"
   }
