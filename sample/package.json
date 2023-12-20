@@ -28,11 +28,10 @@
     "dependencies": {
       "@remvst/configurable": "file:../configurable-api",
       "@remvst/configurable-react": "file:../configurable-react",
+      "@types/react-dom": "^18.0.6",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
-      "@types/react-dom": "^18.0.6",
       "ts-loader": "^9.2.6",
       "typescript": "^4.1.3"
     }
   }
-  
